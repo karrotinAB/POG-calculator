@@ -84,6 +84,7 @@
   .alert-info { background: #EBF5FF; color: #2980B9; border-left: 3px solid #2980B9; }
   .divider { height: 1px; background: var(--border); margin: 16px 0; }
   .badge-count { background: var(--orange-light); color: var(--orange); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+  select.display-type.set { background: #EBF5FF; border-color: #2980B9; color: #2980B9; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -438,6 +439,8 @@ function updateDepth(sel) {
   const d = getDepth(sel.value);
   const cell = document.getElementById('dd-' + sel.getAttribute('data-uid'));
   if (cell) cell.textContent = d > 0 ? d + ' mm' : '—';
+  if (sel.value && sel.value !== 'none') sel.classList.add('set');
+  else sel.classList.remove('set');
 }
 
 function setupExcelUpload() {
