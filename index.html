@@ -279,15 +279,16 @@ select.display-type.auto-set{background:#F0FFF4;border-color:#27AE60;color:#27AE
 <script>
 const DISPLAY_TYPES = [
   { id: 'none',         label: '해당없음',         defaultDepth: 0 },
+  { id: 'mixed',        label: '혼합(선반+고리)',   defaultDepth: 250 },
   { id: 'shelf_wall',   label: '벽매대 선반',      defaultDepth: 250 },
   { id: 'hook_wall',    label: '벽매대 고리',      defaultDepth: 185 },
-  { id: 'mixed',        label: '혼합(선반+고리)',   defaultDepth: 250 },
   { id: 'shelf_center', label: '중앙매대 선반',    defaultDepth: 250 },
   { id: 'hook_center',  label: '중앙매대 고리',    defaultDepth: 185 },
   { id: 'space_wall',   label: '스페이스월',       defaultDepth: 85 },
   { id: 'hook_board',   label: '타공판 고리',      defaultDepth: 85 },
   { id: 'card_shelf',   label: '카드선반',         defaultDepth: 0, usePackQty: true,  defaultQty: 1 },
   { id: 'file_holder',  label: '화일집기',         defaultDepth: 0, useFixedQty: true, defaultQty: 3 },
+  { id: 'angle_shelf', label: '각도조절선반', defaultDepth: 40 },
 ];
 
 // 타공 매대타입 → 자동 진열방식 매핑
