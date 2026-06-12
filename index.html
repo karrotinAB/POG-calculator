@@ -731,10 +731,26 @@ function applyExcludeFile() {
 }
 
 function applyExcludeInput() {
-  const codes=document.getElementById('exclude-input').value.split(/[\n,\s]+/).map(s=>s.trim()).filter(s=>s);
-  if(!codes.length){alert('제품코드를 입력해주세요');return;}
-  addToExcludeList(codes);
-  document.getElementById('exclude-input').value='';
+  const lines = document.getElementById('exclude-input').value
+    .split(/\n/)
+    .map(s => s.trim())
+    .filter(s => s);
+  
+  if (!lines.length) { alert('제품코드를 입력해주세요'); return; }
+  
+  lines.forEach(line => {
+    // 탭, 공백, 쉼표로 구분된 코드 + 숫자 파싱
+    const parts = line.split(/[\t,\s]+/).filter(s => s);
+    const code = parts[0];
+    const count = parts[1] ? parseInt(parts[1]) || 1 : 1;
+    if (!code) return;
+    const ex = excludeList.find(e => e.code === code);
+    if (ex) ex.count += count;
+    else excludeList.push({ code, count });
+  });
+  
+  renderExcludeTags();
+  document.getElementById('exclude-input').value = '';
 }
 
 function addToExcludeList(codes) {
